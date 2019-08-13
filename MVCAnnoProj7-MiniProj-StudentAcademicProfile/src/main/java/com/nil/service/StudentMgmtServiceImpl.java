@@ -6,11 +6,12 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.nil.bo.StudentBO;
 import com.nil.dao.StudentDAO;
 import com.nil.dto.StudentDTO;
-@Repository("stService")
+@Service("stService")
 public final class StudentMgmtServiceImpl implements StudentMgmtService {
 	@Autowired
 	private StudentDAO dao;
