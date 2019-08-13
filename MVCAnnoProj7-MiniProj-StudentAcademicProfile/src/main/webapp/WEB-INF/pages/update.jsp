@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1 style="color:red;text-align:center">Student Details</h1>
-	<form:form method="POST" commandName="stCmd" onsubmit="return Validate(this)">
+	<form:form method="POST" modelAttribute="stCmd" onsubmit="return Validate(this)">
 	<center><table border="1">
 		<tr>
 		<td>Student ID</td>
@@ -48,6 +48,7 @@
 	<a href="student_profile.htm"><img src="images/home.jpg" height="30" width="30"/></a>
 	</center>
 	<input type="hidden" name="flag" value="no"/>
+	<input type="hidden" name="cToken" value="${sToken}"/>
 	</form:form>
 </body>
 </html>

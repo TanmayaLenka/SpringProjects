@@ -1,54 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-
-	<!-- Handler mapping cfgs -->
-	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-	<property name="mappings">
-		<props>
-		<prop key="home.htm">pvc</prop>
-		<prop key="student_profile.htm">spc</prop>
-		<prop key="update.htm">suc</prop>
-		<prop key="insert.htm">sic</prop>
-		<prop key="delete.htm">sdc</prop>
-		</props>
-	</property>
-	</bean>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
-	<!-- studentcontroller class cfgs -->
-	<bean id="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
-		<property name="viewName" value="welcome"/>
-	</bean>
-	
-	<bean id="spc" class="com.nil.cotroller.StudentProfileController">
-		<constructor-arg ref="service"/>
-	</bean>
-	
-	<bean id="suc" class="com.nil.cotroller.StudentUpdateController">
-		<property name="formView" value="update"/>
-		<property name="successView" value="report"/>
-		<property name="commandName" value="stCmd"/>
-		<property name="commandClass" value="com.nil.command.StudentCommand"/>
-		<property name="sessionForm" value="true"/>
-		<property name="validator" ref="stVal"/>
-		<constructor-arg ref="service"/>
-	</bean>
-	
-	<bean id="sic" class="com.nil.cotroller.StudentInsertController">
-		<property name="formView" value="insert"/>
-		<property name="successView" value="report"/>
-		<property name="commandName" value="stCmd"/>
-		<property name="commandClass" value="com.nil.command.StudentCommand"/>
-		<property name="sessionForm" value="true"/>
-		<property name="validator" ref="stVal"/>
-		<constructor-arg ref="service"/>
-	</bean>
-	
-	<bean id="sdc" class="com.nil.cotroller.StudentDeleteController">
-		<constructor-arg ref="service"/>
-	</bean>
-	<!-- Validator cfgs -->
+		<!-- Validator cfgs -->
 	<bean id="stVal" class="com.nil.validator.StudentDetailsValidator"/>
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -60,4 +19,8 @@
 		<property name="prefix" value="/WEB-INF/pages/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	<context:component-scan base-package="com.nil.cotroller"/>
+	<mvc:interceptors >
+			<bean class="com.nil.interceptor.StudentFormInterceptor"/>
+	</mvc:interceptors>
 </beans>

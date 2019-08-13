@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
 	<h1 style="color:blue;text-align:center">Student Registration</h1><br>
 	<center>
 	<table border="1">
-	<form:form method="POST" commandName="stCmd" onsubmit="return Validate(this)">
+	<form:form method="POST" modelAttribute="stCmd" onsubmit="return Validate(this)">
 		<tr>
 		<td>Student Name</td>
 		<td><form:input path="sname" id="sname"/>
@@ -42,6 +42,7 @@
 		<td><input type="reset" value="Reset"/></td>
 		</tr>
 		<input type="hidden" name="flag" value="no"/>
+		<input type="hidden" name="cToken" value="${sToken}"/>
 	</form:form>
 	</table><br>
 	<a href="student_profile.htm"><img src="images/home.jpg" height="30" width="30"/></a>
