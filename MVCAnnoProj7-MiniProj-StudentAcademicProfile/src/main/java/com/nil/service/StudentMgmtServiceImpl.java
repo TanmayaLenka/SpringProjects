@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.nil.bo.StudentBO;
 import com.nil.dao.StudentDAO;
 import com.nil.dto.StudentDTO;
-
+@Repository("stDAO")
 public final class StudentMgmtServiceImpl implements StudentMgmtService {
+	@Autowired
 	private StudentDAO dao;
 
-	public StudentMgmtServiceImpl(StudentDAO dao) {
-		this.dao = dao;
-	}
 
 	@Override
 	public List<StudentDTO> fetchDetails() {
