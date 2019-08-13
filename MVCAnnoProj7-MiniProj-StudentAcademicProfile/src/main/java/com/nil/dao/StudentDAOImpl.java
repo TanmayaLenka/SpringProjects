@@ -2,23 +2,23 @@ package com.nil.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
+import org.springframework.stereotype.Repository;
 
 import com.nil.bo.StudentBO;
-
+@Repository("stDAO")
 public final class StudentDAOImpl implements StudentDAO {
+	@Autowired
 	private JdbcTemplate jt;
+	
 	private static final String STUDENT_DETAILS="SELECT SID,SNAME,BRANCH,SEMESTER,BACKLOGS FROM STUDENT_PROFILE";
 	private static final String STUDENT_DETAILS_BY_ID="SELECT SID,SNAME,BRANCH,SEMESTER,BACKLOGS FROM STUDENT_PROFILE WHERE SID=?";
 	private static final String UPDATE_BY_ID="UPDATE STUDENT_PROFILE SET SNAME=?, BRANCH=?, SEMESTER=?, BACKLOGS=? WHERE SID=?";
 	private static final String INSERT_STUDENT_DETAILS="INSERT INTO STUDENT_PROFILE VALUES(SID.NEXTVAL,?,?,?,?)";
 	private static final String REMOVE_BY_ID="DELETE FROM STUDENT_PROFILE WHERE SID=?";
-	
-	public StudentDAOImpl(JdbcTemplate jt) {
-		this.jt = jt;
-	}
 
 	@Override
 	public List<StudentBO> getDetails() {

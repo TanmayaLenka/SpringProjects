@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.nil.bo.StudentBO;
 import com.nil.dao.StudentDAO;
 import com.nil.dto.StudentDTO;
-@Repository("stDAO")
+@Repository("stService")
 public final class StudentMgmtServiceImpl implements StudentMgmtService {
 	@Autowired
 	private StudentDAO dao;
